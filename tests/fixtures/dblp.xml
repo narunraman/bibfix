@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE dblp SYSTEM "dblp.dtd">
+<!-- A tiny, invented stand-in for DBLP's XML dump (https://dblp.org/xml/), used with ref.bib. -->
+<dblp>
+<article key="journals/corr/abs-2101-00001"><author>Jane Doe</author><author>Alex Smith</author>
+<title>Learning Synthetic Benchmarks from Examples.</title><journal>CoRR</journal>
+<volume>abs/2101.00001</volume><year>2021</year><ee>https://arxiv.org/abs/2101.00001</ee></article>
+<inproceedings key="conf/exconf/DoeS22"><author>Jane Doe 0001</author><author>Alex Smith</author>
+<title>Learning Synthetic Benchmarks from Examples.</title><pages>1-10</pages><year>2022</year>
+<booktitle>ExConf</booktitle><ee>https://doi.org/10.5555/exconf.2022.1</ee><crossref>conf/exconf/2022</crossref></inproceedings>
+<proceedings key="conf/exconf/2022"><title>Proceedings of the Example Conference, ExConf 2022.</title>
+<publisher>Example Press</publisher><year>2022</year></proceedings>
+<article key="journals/exj/RoeL20"><author>Richard Roe</author><author>Kim Lee</author><!-- gitleaks:allow (a DBLP key, not a secret) -->
+<title>Sparse Toy Models of Everything.</title><journal>Example J.</journal><volume>3</volume><number>2</number>
+<pages>45-67</pages><year>2020</year><ee>https://doi.org/10.5555/exj.2020.3</ee></article>
+<article key="journals/exj/Lee19"><author>Kim Lee</author><title>A Study in Imaginary Numbers of Citations.</title><!-- gitleaks:allow (a DBLP key, not a secret) -->
+<journal>Example J.</journal><volume>2</volume><year>2019</year></article>
+<article key="journals/exj/Jager21"><author>Mia J&auml;ger</author><title>Umlauts in Author Names.</title><!-- gitleaks:allow (a DBLP key, not a secret) -->
+<journal>Example J.</journal><year>2021</year></article>
+<www key="homepages/00/0001"><author>Jane Doe</author><title>Home Page</title></www>
+</dblp>

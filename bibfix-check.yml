@@ -1,0 +1,42 @@
+# Copy to .github/workflows/bibfix-check.yml in a paper repository.
+# Fails when a bibliography has entries that neither DBLP nor Crossref can find (possible typos or
+# invented citations) or that could not be looked up, and prints every proposed fix in the job log.
+name: bibliography
+on:
+  push:
+    paths: ["**/*.bib", "**/*.tex"]
+  pull_request:
+    paths: ["**/*.bib", "**/*.tex"]
+
+jobs:
+  bibfix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Install bibfix
+        run: uv tool install git+https://github.com/narunraman/bibfix
+      # DBLP is checked against a local index (about 4.5 GB), rebuilt once a month and cached.
+      - id: month
+        run: echo "month=$(date +%Y-%m)" >> "$GITHUB_OUTPUT"
+      - id: dblp
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/bibfix/dblp.sqlite
+          key: dblp-${{ steps.month.outputs.month }}
+      - name: Build the DBLP index (first run each month, about 15 minutes)
+        if: steps.dblp.outputs.cache-hit != 'true'
+        run: bibfix dblp-update && rm ~/.cache/bibfix/dblp.xml.gz
+      # Optional: regenerate references.bib from Zotero first. Needs the ZOTERO_API_KEY secret
+      # and ZOTERO_LIBRARY_ID variable; drop this step if the .bib is maintained by hand.
+      # - name: Sync from Zotero
+      #   run: bibfix sync --from-tex main.tex -o references.bib
+      #   env:
+      #     ZOTERO_API_KEY: ${{ secrets.ZOTERO_API_KEY }}
+      #     ZOTERO_LIBRARY_ID: ${{ vars.ZOTERO_LIBRARY_ID }}
+      - name: Check bibliography
+        shell: bash
+        run: |
+          while IFS= read -r -d '' file; do
+            bibfix check "$file" --fail-on not-found,error
+          done < <(git ls-files -z '*.bib')

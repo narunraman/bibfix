@@ -1,0 +1,62 @@
+% Synthetic bibliography for bibfix's tests: every work, author and venue is invented.
+% Checked against dblp.xml (a tiny stand-in for DBLP's dump); Crossref is faked in the tests.
+%   doe2021learning   arXiv preprint whose published version is in DBLP   -> arxiv
+%   doe2022learning   the same paper again under a second key             -> duplicate; safe (adds fields)
+%   roe2020sparse     in DBLP; lacks volume, pages and DOI                -> safe
+%   lee2018imaginary  in DBLP, but with a different year                  -> review
+%   nobody2024ghost   in neither DBLP nor Crossref                        -> not found
+%   market2019prices  not in DBLP; Crossref knows it                      -> verified elsewhere
+%   broken2020comma   missing comma between fields                        -> not checked
+@string{exj = {Example Journal}}
+
+@article{doe2021learning,
+  author     = {Jane Doe and Alex Smith},
+  title      = {Learning Synthetic Benchmarks from Examples},
+  journal    = {CoRR},
+  volume     = {abs/2101.00001},
+  eprinttype = {arXiv},
+  eprint     = {2101.00001},
+  year       = {2021}
+}
+
+@inproceedings{doe2022learning,
+  author    = {Jane Doe and Alex Smith},
+  title     = {Learning Synthetic Benchmarks from Examples},
+  booktitle = {Proceedings of the Example Conference, ExConf 2022},
+  year      = {2022}
+}
+
+@article{roe2020sparse,
+  author  = {Richard Roe and Kim Lee},
+  title   = {Sparse Toy Models of Everything},
+  journal = {Example J.},
+  year    = {2020}
+}
+
+@article{lee2018imaginary,
+  author  = {Kim Lee},
+  title   = {A Study in Imaginary Numbers of Citations},
+  journal = {Example J.},
+  volume  = {2},
+  year    = {2018}
+}
+
+@article{nobody2024ghost,
+  author  = {Nobody Atall},
+  title   = {A Paper That Was Never Written},
+  journal = exj,
+  year    = {2024}
+}
+
+@article{market2019prices,
+  author  = {Pat Market},
+  title   = {Prices and Quantities in Imaginary Markets},
+  journal = exj,
+  year    = {2019}
+}
+
+@misc{broken2020comma,
+  author = {Jane Doe},
+  title  = {Missing Comma}
+  year   = {2020}
+}
